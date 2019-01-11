@@ -11,30 +11,6 @@ public class sopa_de_letras {
 	
 	public static char sopa[][] = new char [15][15];
 	
-	/*MÉTODO--> introducir
-	 * 
-	 * Entradas--> Éste método no tiene entradas
-	 * 
-	 * Salidas--> El método no devuelve nada
-	 * 
-	 * Descripción--> Éste método tiene como función recoger 10 palabras válidas para la sopa de letras
-	 */
-	public static void introducir() {
-		
-	}
-	
-	/*MÉTODO--> ordenar
-	 * 
-	 * Entradas--> Éste método no tiene entradas
-	 * 
-	 * Salidas--> El método no devuelve nada
-	 * 
-	 * Descripción--> Éste método tiene como función ordenar las palabras de mayor a menor
-	 */
-	public static void ordenar() {
-		
-	}
-	
 	/*MÉTODO--> crear
 	 * 
 	 * Entradas--> Éste método no tiene entradas
