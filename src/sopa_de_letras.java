@@ -48,12 +48,13 @@ public class sopa_de_letras {
 		
 		do {
 			boolean flag=true;
+			boolean print=true;
 			try {
 				do {
 					System.out.print((j+1)+": ");
-					palabra = t.nextLine();
+					palabra = t.next();
 					palabra = palabra.toUpperCase();
-				}while((palabra.length()<3)||(palabra.length()>15));
+				}while((palabra.length()<3)||(palabra.length()>15)||(palabra.matches(".*[^A-Z].*")));
 				j++;
 			}
 			catch(Exception e) {
@@ -66,69 +67,139 @@ public class sopa_de_letras {
 			char v [] = palabra.toCharArray();  
 			
 			do {
-				
+				flag=true;
+				print=true;
 				try {
 					
-					f = (int) (Math.random() * 15);
-					c = (int) (Math.random() * 15);
+					f = (int) (Math.random() * 14);
+					c = (int) (Math.random() * 14);
 					sopa[f][c] = v[0];
 				
 					opc = (int) (Math.random()*(8-1)+1);
 					switch(opc) {
 						
 						case 1: //DIAGONAL DE ARRIBA A ABAJO Y DE IZQUIERDA A DERECHA
-							for(i=1; i<palabra.length(); i++) {
-								sopa[f+i][c+i] = v[i]; 
-								if(((f+i)>15)||((c+i)>15))       flag=false;
+							
+							if(((f+(palabra.length()-1))>15)||((c+(palabra.length()-1))>15))       flag=false;
+							else {
+								for(i=1; i<palabra.length(); i++) {
+									sopa[f+i][c+i] = v[i]; 
+									if(sopa[f+i][c+i]==v[i]) {
+										print=true;
+									}
+									else {
+										print=false;
+									}
+								}
 							}
+							
 						break;
 						
 						case 2: //DIAGONAL DE ABAJO A ARRIBA Y DE DERECHA A IZQUIERDA
-							for(i=1; i<palabra.length(); i++) {
-								sopa[f-i][c-i] = v[i]; 
-								if(((f-i)<0)||((c-i)<0))         flag=false;
+							if(((f-(palabra.length()-1))<0)||((c-(palabra.length()-1))<0))       flag=false;
+							else {
+								for(i=1; i<palabra.length(); i++) {
+									sopa[f-i][c-i] = v[i]; 
+									if(sopa[f+i][c+i]==v[i]) {
+										print=true;
+									}
+									else {
+										print=false;
+									}
+								}
 							}
+							
 						break;
 						
 						case 3: //DIAGONAL DE ARRIBA A ABAJO Y DE DERECHA A IZQUIERDA
-							for(i=1; i<palabra.length(); i++) {
-								sopa[f+i][c-i] = v[i]; 
-								if(((f+i)>15)||((c-i)<0))        flag=false;
+							if(((f+(palabra.length()-1))>15)||((c-(palabra.length()-1))<0))       flag=false;
+							else {
+								for(i=1; i<palabra.length(); i++) {
+									sopa[f+i][c-i] = v[i]; 
+									if(sopa[f+i][c+i]==v[i]) {
+										print=true;
+									}
+									else {
+										print=false;
+									}
+								}
 							}
 						break;
 						
 						case 4: //DIAGONAL DE ABAJO A ARRIBA Y DE IZQUIERDA A DERECHA
-							for(i=1; i<palabra.length(); i++) {
-								sopa[f-i][c+i] = v[i]; 
-								if(((f-i)<0)||((c+i)>15))        flag=false;
+							if(((f-(palabra.length()-1))<0)||((c+(palabra.length()-1))>15))       flag=false;
+							else {
+								for(i=1; i<palabra.length(); i++) {
+									sopa[f-i][c+i] = v[i]; 
+									if(sopa[f+i][c+i]==v[i]) {
+										print=true;
+									}
+									else {
+										print=false;
+									}
+								}
 							}
 						break;
 						
 						case 5: //HORIZONTAL DE IZQUIERDA A DERECHA
-							for(i=1; i<palabra.length(); i++) {
-								sopa[f][c+i] = v[i]; 
-								if((c+i)>15)        flag=false;
+							if((c+(palabra.length()-1))>15)       flag=false;
+							else {
+								for(i=1; i<palabra.length(); i++) {
+									sopa[f][c+i] = v[i]; 
+									if(sopa[f+i][c+i]==v[i]) {
+										print=true;
+									}
+									else {
+										print=false;
+									}
+								}
 							}
 						break;
 						
 						case 6: //HORIZONTAL DE DERECHA A IZQUIERDA
-							for(i=1; i<palabra.length(); i++) {
-								sopa[f][c-i] = v[i];
-								if((c-i)<0)        flag=false;
+							if((c-(palabra.length()-1))<0)     flag=false;
+							else {
+								for(i=1; i<palabra.length(); i++) {
+									sopa[f][c-i] = v[i];
+									if(sopa[f+i][c+i]==v[i]) {
+										print=true;
+									}
+									else {
+										print=false;
+									}
+								}
 							}
 						break;
 						
 						case 7: //VERTICAL DE ARRIBA A ABAJO
-							for(i=1; i<palabra.length(); i++) {
-								sopa[f+i][c] = v[i];
-								if((f+i)>15)      flag=false;
+							if((f+(palabra.length()-1))>15)       flag=false;
+							else {
+								for(i=1; i<palabra.length(); i++) {
+									sopa[f+i][c] = v[i];
+									if(sopa[f+i][c+i]==v[i]) {
+										print=true;
+									}
+									else {
+										print=false;
+									}
+								}
 							}
 						break;
 						
 						case 8: //VERTICAL DE ABAJO A ARRIBA
-							for(i=1; i<palabra.length(); i++) {
-								sopa[f-i][c] = v[i]; 
-								if((f-i)<0)     flag=false;
+							if((f-(palabra.length()-1))<0)       flag=false;
+							else {
+								for(i=1; i<palabra.length(); i++) {
+									sopa[f-i][c] = v[i]; 
+									if(sopa[f+i][c+i]==v[i]) {
+										print=true;
+									}
+									else {
+										print=false;
+									}
+									
+									if((f-i)<0)     flag=false;
+								}
 							}
 						break;
 		
@@ -137,7 +208,7 @@ public class sopa_de_letras {
 				catch(Exception e) {
 				
 				}
-			}while(flag==false);
+			}while((flag==false)||(print==false));
 			
 		}while(n<10);
 			
