@@ -151,6 +151,15 @@ public class sopa_de_letras {
 	
 	}
 	
+
+	/*MÉTODO--> main
+	 *
+	 * Entradas--> Éste método no tiene entradas
+	 * 
+	 * Salidas--> El método no devuelve nada
+	 * 
+	 * Descripción--> Éste método tiene como función ejecutar el programa y hacer las llamadas a los diferentes métodos
+	 */
 	public static void main (String [] args) {
 		
 		System.out.println("--------------");
