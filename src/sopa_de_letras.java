@@ -11,6 +11,9 @@ public class sopa_de_letras {
 
 	public static char s[][] = new char[15][15];
 	
+	public static boolean aux[][] = new boolean[15][15];
+	
+	
 	static Scanner t = new Scanner(System.in);
 
 	/*METODO: public static void colocar().
@@ -23,7 +26,7 @@ public class sopa_de_letras {
 		int f, c, i, k, l, n = 0;
 		String palabra = null;
 
-		System.out.println("INTRODUCE LAS PALABRAS DE LA SOPA DE LETRAS");
+		System.out.println("INTRODUCE LAS palabraS DE LA SOPA DE LETRAS");
 		System.out.println();
 		do {
 			boolean ok = true;
@@ -31,12 +34,12 @@ public class sopa_de_letras {
 
 			try {
 				do {
-					System.out.print((n + 1) + ": ");
+					System.out.print((n + 1)+ ": ");
 					palabra = t.next();
 					palabra = palabra.toUpperCase();
 				} while ((palabra.length() < 3) || (palabra.length() > 15) || (palabra.matches(".*[^A-Z].*")));
 				
-				System.out.println(palabra);
+				System.out.println("Busca la palabra: "+ palabra);
 				
 			} catch (Exception e) {
 				t.next();
@@ -55,32 +58,44 @@ public class sopa_de_letras {
 				try {
 					f = (int) (Math.random() * 15);
 					c = (int) (Math.random() * 15);
-
-					s[f][c] = v[0];
-
-					if (s[f][c] == v[0]) {
-
-					} else {
-						print = false;
-					}
-
-					int opc = (int) (Math.random() * (8 - 1) + 1);
+					
+					int opc = 1; //(int) (Math.random() * (8 - 1) + 1);
 
 					switch (opc) {
 
 						case 1: // Diagonal a la derecha hacia abajo
 	
-							if (((f + (palabra.length() - 1)) > 15) || ((c + (palabra.length() - 1)) > 15)) {
+							if (((f + (palabra.length() - 1)) > 14) || ((c + (palabra.length() - 1)) > 14)) {
 								ok = false;
-							} else {
-	
+							} 
+							else {
+								if(aux[f][c]==false) {
+									s[f][c] = v[0];
+									aux[f][c] = true;
+								}
+								else {
+									if(s[f][c]==v[0]) {
+										s[f][c] = v[0];
+										aux[f][c] = true;
+									}
+									else {
+										ok = false;
+									}
+								}
+								
 								for (int j = 1; j < palabra.length(); j++) {
-									s[f + j][c + j] = v[j];
-	
-									if (s[f + j][c + j] == v[j]) {
-	
-									} else {
-										print = false;
+									if(aux[f+j][c+j]==false) {
+										s[f+j][c+j] = v[j];
+										aux[f+j][c+j] = true;
+									}
+									else {
+										if(s[f+j][c+j]==v[j]) {
+											s[f+j][c+j] = v[j];
+											aux[f+j][c+j] = true;
+										}
+										else {
+											ok = false;
+										}
 									}
 								}
 							}
@@ -89,17 +104,39 @@ public class sopa_de_letras {
 	
 						case 2:// Vertical hacia abajo.
 	
-							if ((f + (palabra.length() - 1)) > 15) {
+							if ((f + (palabra.length() - 1)) > 14) {
 								ok = false;
-							} else {
-								for (int j = 1; j < palabra.length(); j++) {
-									s[f + j][c] = v[j];
-	
-									if (s[f + j][c] == v[j]) {
-	
-									} else {
-										print = false;
+							} 
+							else {
+								if(aux[f][c]==false) {
+									s[f][c] = v[0];
+									aux[f][c] = true;
+								}
+								else {
+									if(s[f][c]==v[0]) {
+										s[f][c] = v[0];
+										aux[f][c] = true;
 									}
+									else {
+										ok = false;
+									}
+								}
+								for (int j = 1; j < palabra.length(); j++) {
+									
+									if(aux[f+j][c]==false) {
+										s[f+j][c] = v[j];
+										aux[f+j][c] = true;
+									}
+									else {
+										if(s[f+j][c]==v[j]) {
+											s[f+j][c] = v[j];
+											aux[f+j][c] = true;
+										}
+										else {
+											ok = false;
+										}
+									}
+									
 								}
 							}
 	
@@ -107,17 +144,38 @@ public class sopa_de_letras {
 	
 						case 3:// Horizontal de izquierda a derecha.
 	
-							if ((c + (palabra.length() - 1)) > 15) {
+							if ((c + (palabra.length() - 1)) > 14) {
 								ok = false;
-							} else {
-								for (int j = 1; j < palabra.length(); j++) {
-									s[f][c + j] = v[j];
-	
-									if (s[f][c + j] == v[j]) {
-	
-									} else {
-										print = false;
+							}
+							else {
+								if(aux[f][c]==false) {
+									s[f][c] = v[0];
+									aux[f][c] = true;
+								}
+								else {
+									if(s[f][c]==v[0]) {
+										s[f][c] = v[0];
+										aux[f][c] = true;
 									}
+									else {
+										ok = false;
+									}
+								}
+								for (int j = 1; j < palabra.length(); j++) {
+									if(aux[f][c+j]==false) {
+										s[f][c+j] = v[j];
+										aux[f][c+j] = true;
+									}
+									else {
+										if(s[f][c+j]==v[j]) {
+											s[f][c+j] = v[j];
+											aux[f][c+j] = true;
+										}
+										else {
+											ok = false;
+										}
+									}
+					
 								}
 							}
 	
@@ -127,15 +185,34 @@ public class sopa_de_letras {
 	
 							if ((f - (palabra.length() - 1)) < 0) {
 								ok = false;
-							} else {
-	
+							} 
+							else {
+								if(aux[f][c]==false) {
+									s[f][c] = v[0];
+									aux[f][c] = true;
+								}
+								else {
+									if(s[f][c]==v[0]) {
+										s[f][c] = v[0];
+										aux[f][c] = true;
+									}
+									else {
+										ok = false;
+									}
+								}
 								for (int j = 1; j < palabra.length(); j++) {
-									s[f - j][c] = v[j];
-	
-									if (s[f - j][c] == v[j]) {
-	
-									} else {
-										print = false;
+									if(aux[f-j][c]==false) {
+										s[f-j][c] = v[j];
+										aux[f-j][c] = true;
+									}
+									else {
+										if(s[f-j][c]==v[j]) {
+											s[f-j][c] = v[j];
+											aux[f-j][c] = true;
+										}
+										else {
+											ok = false;
+										}
 									}
 								}
 							}
@@ -146,15 +223,36 @@ public class sopa_de_letras {
 	
 							if ((c - (palabra.length() - 1)) < 0) {
 								ok = false;
-							} else {
-								for (int j = 1; j < palabra.length(); j++) {
-									s[f][c - j] = v[j];
-	
-									if (s[f][c - j] == v[j]) {
-	
-									} else {
-										print = false;
+							}
+							else {
+								if(aux[f][c]==false) {
+									s[f][c] = v[0];
+									aux[f][c] = true;
+								}
+								else {
+									if(s[f][c]==v[0]) {
+										s[f][c] = v[0];
+										aux[f][c] = true;
 									}
+									else {
+										ok = false;
+									}
+								}
+								for (int j = 1; j < palabra.length(); j++) {
+									if(aux[f][c-j]==false) {
+										s[f][c-j] = v[j];
+										aux[f][c-j] = true;
+									}
+									else {
+										if(s[f][c-j]==v[j]) {
+											s[f][c-j] = v[j];
+											aux[f][c-j] = true;
+										}
+										else {
+											ok = false;
+										}
+									}
+	
 								}
 							}
 							
@@ -162,17 +260,38 @@ public class sopa_de_letras {
 	
 						case 6: // Diagonal hacia la derecha y hacia arriba.
 	
-							if (((f - (palabra.length() - 1)) < 0) || ((c + (palabra.length() - 1)) > 15)) {
+							if (((f - (palabra.length() - 1)) < 0) || ((c + (palabra.length() - 1)) > 14)) {
 								ok = false;
-							} else {
-								for (int j = 1; j < palabra.length(); j++) {
-									s[f - j][c + j] = v[j];
-	
-									if (s[f - j][c + j] == v[j]) {
-	
-									} else {
-										print = false;
+							} 
+							else {
+								if(aux[f][c]==false) {
+									s[f][c] = v[0];
+									aux[f][c] = true;
+								}
+								else {
+									if(s[f][c]==v[0]) {
+										s[f][c] = v[0];
+										aux[f][c] = true;
 									}
+									else {
+										ok = false;
+									}
+								}
+								for (int j = 1; j < palabra.length(); j++) {
+									if(aux[f-j][c+j]==false) {
+										s[f-j][c+j] = v[j];
+										aux[f-j][c+j] = true;
+									}
+									else {
+										if(s[f-j][c+j]==v[j]) {
+											s[f-j][c+j] = v[j];
+											aux[f+j][c+j] = true;
+										}
+										else {
+											ok = false;
+										}
+									}
+	
 								}
 							}
 							
@@ -180,17 +299,38 @@ public class sopa_de_letras {
 	
 						case 7: // Diagonal hacia la izquierda y hacia abajo.
 	
-							if (((f + palabra.length() - 1) > 15) || (c - (palabra.length() - 1) < 0)) {
+							if (((f + palabra.length() - 1) > 14) || (c - (palabra.length() - 1) < 0)) {
 								ok = false;
-							} else {
-								for (int j = 1; j < palabra.length(); j++) {
-									s[f + j][c - j] = v[j];
-	
-									if (s[f - j][c] == v[j]) {
-	
-									} else {
-										print = false;
+							} 
+							else {
+								if(aux[f][c]==false) {
+									s[f][c] = v[0];
+									aux[f][c] = true;
+								}
+								else {
+									if(s[f][c]==v[0]) {
+										s[f][c] = v[0];
+										aux[f][c] = true;
 									}
+									else {
+										ok = false;
+									}
+								}
+								for (int j = 1; j < palabra.length(); j++) {
+									if(aux[f+j][c-j]==false) {
+										s[f+j][c-j] = v[j];
+										aux[f+j][c-j] = true;
+									}
+									else {
+										if(s[f+j][c-j]==v[j]) {
+											s[f+j][c-j] = v[j];
+											aux[f+j][c-j] = true;
+										}
+										else {
+											ok = false;
+										}
+									}
+	
 								}
 							}
 	
@@ -200,15 +340,37 @@ public class sopa_de_letras {
 	
 							if (((f - palabra.length() - 1) < 0) || ((c - palabra.length() - 1) < 0)) {
 								ok = true;
-							} else {
-								for (int j = 1; j < palabra.length(); j++) {
-									s[f - j][c - j] = v[j];
-	
-									if (s[f - j][c - j] == v[j]) {
-	
-									} else {
-										print = false;
+							} 
+							else {
+								if(aux[f][c]==false) {
+									s[f][c] = v[0];
+									aux[f][c] = true;
+								}
+								else {
+									if(s[f][c]==v[0]) {
+										s[f][c] = v[0];
+										aux[f][c] = true;
 									}
+									else {
+										ok = false;
+									}
+								}
+								for (int j = 1; j < palabra.length(); j++) {
+									if(aux[f-j][c-j]==false) {
+										s[f-j][c-j] = v[j];
+										aux[f-j][c-j] = true;
+									}
+									else {
+										if(s[f-j][c-j]==v[j]) {
+											s[f-j][c-j] = v[j];
+											aux[f-j][c-j] = true;
+										}
+										else {
+											ok = false;
+										}
+									}
+									
+	
 								}
 							}
 	
@@ -217,7 +379,8 @@ public class sopa_de_letras {
 				} catch (Exception e) {
 
 				}
-			} while ((ok == false) || (print == false));
+				
+			} while (ok == false);
 
 		} while (n < 10);
 
@@ -235,6 +398,13 @@ public class sopa_de_letras {
 		for (f = 0; f < 15; f++) {
 			for (c = 0; c < 15; c++) {
 				s[f][c] = (char) (Math.random() * 26 + 'a');
+
+			}
+		}
+		
+		for (f = 0; f < 15; f++) {
+			for (c = 0; c < 15; c++) {
+				aux[f][c] = false;
 
 			}
 		}
