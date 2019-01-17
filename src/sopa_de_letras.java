@@ -1,3 +1,9 @@
+/***PROGRAMA DE SOPA DE LETRAS
+ * AUTOR: DAVID MCCONNELL VICENTE
+ * FECHA: 17/01/2019
+ * CURSO: DM1B
+ */
+
 import java.util.Scanner;
 
 public class sopa_de_letras {
@@ -9,9 +15,11 @@ public class sopa_de_letras {
 	static Scanner t = new Scanner(System.in);
 
 	/*
-	 * METODO: public static void posicion(). ENTRADA: SALIDA: DESCRIPCIÓN: En este
-	 * metodo lo que hace es que pide la palabra y te la coloca aleatoriamente
-	 * dentro de la sopa de letras.
+	 * METODO: public static void posicion(). 
+	 * ENTRADA: 
+	 * SALIDA: 
+	 * DESCRIPCIÓN: La función de este método es recoger y validar las palabras
+	 * y colocarlas en la sopa de manera aleatoria.
 	 */
 	public static void posicion() {
 
@@ -549,7 +557,11 @@ public class sopa_de_letras {
 	}
 
 	/*
-	 * METODO: public static void sopa(). ENTRADAS: SALIDAS:
+	 * METODO: public static void sopa().
+	 * ENTRADAS: 
+	 * SALIDAS:
+	 * DESCRIPCION: La funcion de este método es crear una sopa de letras 
+	 * con letras aleatorias y después imprimir la sopa con las nuevas palabras.
 	 */
 
 	public static void sopa() {
@@ -587,7 +599,11 @@ public class sopa_de_letras {
 	}
 
 	/*
-	 * METODO: public static void main(String[] args). SALIDAS: ENTRADAS:
+	 * METODO: public static void main(String[] args). 
+	 * ETRADAS:
+	 * SALIDAS: 
+	 * DESCRIPCION: La función de este método es ejecutar el programa y llamar
+	 * al método sopa.
 	 */
 	public static void main(String[] args) {
 		int f, c;
