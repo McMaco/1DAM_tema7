@@ -59,7 +59,7 @@ public class sopa_de_letras {
 					f = (int) (Math.random() * 15);
 					c = (int) (Math.random() * 15);
 					
-					int opc = 1; //(int) (Math.random() * (8 - 1) + 1);
+					int opc = (int) (Math.random() * (8 - 1) + 1);
 
 					switch (opc) {
 
@@ -70,12 +70,10 @@ public class sopa_de_letras {
 							} 
 							else {
 								if(aux[f][c]==false) {
-									s[f][c] = v[0];
 									aux[f][c] = true;
 								}
 								else {
 									if(s[f][c]==v[0]) {
-										s[f][c] = v[0];
 										aux[f][c] = true;
 									}
 									else {
@@ -85,18 +83,22 @@ public class sopa_de_letras {
 								
 								for (int j = 1; j < palabra.length(); j++) {
 									if(aux[f+j][c+j]==false) {
-										s[f+j][c+j] = v[j];
 										aux[f+j][c+j] = true;
 									}
 									else {
 										if(s[f+j][c+j]==v[j]) {
-											s[f+j][c+j] = v[j];
 											aux[f+j][c+j] = true;
 										}
 										else {
 											print = false;
 										}
 									}
+								}
+								
+								s[f][c] = v[0];
+								
+								for (int j = 1; j < palabra.length(); j++) {
+									s[f+j][c+j] = v[j];
 								}
 							}
 	
@@ -109,33 +111,39 @@ public class sopa_de_letras {
 							} 
 							else {
 								if(aux[f][c]==false) {
-									s[f][c] = v[0];
 									aux[f][c] = true;
 								}
 								else {
 									if(s[f][c]==v[0]) {
-										s[f][c] = v[0];
 										aux[f][c] = true;
 									}
 									else {
 										print = false;
 									}
 								}
+								
 								for (int j = 1; j < palabra.length(); j++) {
-									
+	
 									if(aux[f+j][c]==false) {
-										s[f+j][c] = v[j];
+										
 										aux[f+j][c] = true;
 									}
 									else {
 										if(s[f+j][c]==v[j]) {
-											s[f+j][c] = v[j];
 											aux[f+j][c] = true;
 										}
 										else {
 											print = false;
 										}
 									}
+									
+								}
+								
+								s[f][c] = v[0];
+								
+								for (int j = 1; j < palabra.length(); j++) {
+									
+									s[f+j][c] = v[j];
 									
 								}
 							}
@@ -149,32 +157,36 @@ public class sopa_de_letras {
 							}
 							else {
 								if(aux[f][c]==false) {
-									s[f][c] = v[0];
 									aux[f][c] = true;
 								}
 								else {
 									if(s[f][c]==v[0]) {
-										s[f][c] = v[0];
 										aux[f][c] = true;
 									}
 									else {
 										print = false;
 									}
 								}
+								
 								for (int j = 1; j < palabra.length(); j++) {
 									if(aux[f][c+j]==false) {
-										s[f][c+j] = v[j];
 										aux[f][c+j] = true;
 									}
 									else {
 										if(s[f][c+j]==v[j]) {
-											s[f][c+j] = v[j];
 											aux[f][c+j] = true;
 										}
 										else {
 											print = false;
 										}
 									}
+					
+								}
+								
+								s[f][c] = v[0];
+								
+								for (int j = 1; j < palabra.length(); j++) {
+									s[f][c+j] = v[j];
 					
 								}
 							}
@@ -188,32 +200,35 @@ public class sopa_de_letras {
 							} 
 							else {
 								if(aux[f][c]==false) {
-									s[f][c] = v[0];
 									aux[f][c] = true;
 								}
 								else {
 									if(s[f][c]==v[0]) {
-										s[f][c] = v[0];
 										aux[f][c] = true;
 									}
 									else {
 										print = false;
 									}
 								}
+								
 								for (int j = 1; j < palabra.length(); j++) {
 									if(aux[f-j][c]==false) {
-										s[f-j][c] = v[j];
 										aux[f-j][c] = true;
 									}
 									else {
 										if(s[f-j][c]==v[j]) {
-											s[f-j][c] = v[j];
 											aux[f-j][c] = true;
 										}
 										else {
 											ok = false;
 										}
 									}
+								}
+								
+								s[f][c] = v[0];
+								
+								for (int j = 1; j < palabra.length(); j++) {
+									s[f-j][c] = v[j];
 								}
 							}
 	
@@ -238,20 +253,24 @@ public class sopa_de_letras {
 										print = false;
 									}
 								}
+								
 								for (int j = 1; j < palabra.length(); j++) {
 									if(aux[f][c-j]==false) {
-										s[f][c-j] = v[j];
 										aux[f][c-j] = true;
 									}
 									else {
 										if(s[f][c-j]==v[j]) {
-											s[f][c-j] = v[j];
 											aux[f][c-j] = true;
 										}
 										else {
 											print = false;
 										}
 									}
+	
+								}
+								
+								for (int j = 1; j < palabra.length(); j++) {
+									s[f][c-j] = v[j];
 	
 								}
 							}
@@ -265,32 +284,36 @@ public class sopa_de_letras {
 							} 
 							else {
 								if(aux[f][c]==false) {
-									s[f][c] = v[0];
 									aux[f][c] = true;
 								}
 								else {
 									if(s[f][c]==v[0]) {
-										s[f][c] = v[0];
 										aux[f][c] = true;
 									}
 									else {
 										print = false;
 									}
 								}
+								
 								for (int j = 1; j < palabra.length(); j++) {
 									if(aux[f-j][c+j]==false) {
-										s[f-j][c+j] = v[j];
 										aux[f-j][c+j] = true;
 									}
 									else {
 										if(s[f-j][c+j]==v[j]) {
-											s[f-j][c+j] = v[j];
 											aux[f-j][c+j] = true;
 										}
 										else {
 											print = false;
 										}
 									}
+	
+								}
+								
+								s[f][c] = v[0];
+								
+								for (int j = 1; j < palabra.length(); j++) {
+									s[f-j][c+j] = v[j];
 	
 								}
 							}
@@ -304,32 +327,36 @@ public class sopa_de_letras {
 							} 
 							else {
 								if(aux[f][c]==false) {
-									s[f][c] = v[0];
 									aux[f][c] = true;
 								}
 								else {
 									if(s[f][c]==v[0]) {
-										s[f][c] = v[0];
 										aux[f][c] = true;
 									}
 									else {
 										print = false;
 									}
 								}
+								
 								for (int j = 1; j < palabra.length(); j++) {
 									if(aux[f+j][c-j]==false) {
-										s[f+j][c-j] = v[j];
 										aux[f+j][c-j] = true;
 									}
 									else {
 										if(s[f+j][c-j]==v[j]) {
-											s[f+j][c-j] = v[j];
 											aux[f+j][c-j] = true;
 										}
 										else {
 											print = false;
 										}
 									}
+	
+								}
+								
+								s[f][c] = v[0];
+								
+								for (int j = 1; j < palabra.length(); j++) {
+									s[f+j][c-j] = v[j];
 	
 								}
 							}
@@ -343,26 +370,23 @@ public class sopa_de_letras {
 							} 
 							else {
 								if(aux[f][c]==false) {
-									s[f][c] = v[0];
 									aux[f][c] = true;
 								}
 								else {
 									if(s[f][c]==v[0]) {
-										s[f][c] = v[0];
 										aux[f][c] = true;
 									}
 									else {
 										print = false;
 									}
 								}
+								
 								for (int j = 1; j < palabra.length(); j++) {
 									if(aux[f-j][c-j]==false) {
-										s[f-j][c-j] = v[j];
 										aux[f-j][c-j] = true;
 									}
 									else {
 										if(s[f-j][c-j]==v[j]) {
-											s[f-j][c-j] = v[j];
 											aux[f-j][c-j] = true;
 										}
 										else {
@@ -370,6 +394,13 @@ public class sopa_de_letras {
 										}
 									}
 									
+	
+								}
+								
+								s[f][c] = v[0];
+								
+								for (int j = 1; j < palabra.length(); j++) {
+									s[f-j][c-j] = v[j];
 	
 								}
 							}
@@ -414,7 +445,7 @@ public class sopa_de_letras {
 		for (f = 0; f < 15; f++) {
 			for (c = 0; c < 15; c++) {
 
-				System.out.print(" " + s[f][c]);
+				System.out.print(" " +s[f][c]+ " ");
 			}
 			System.out.println();
 		}
