@@ -599,7 +599,7 @@ public class sopa_de_letras {
 	}
 
 	/*
-	 * METODO: public static void main(String[] args). 
+	 * METODO: public static void main(String[] args)
 	 * ETRADAS:
 	 * SALIDAS: 
 	 * DESCRIPCION: La función de este método es ejecutar el programa y llamar
