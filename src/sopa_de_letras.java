@@ -570,7 +570,7 @@ public class sopa_de_letras {
 		for (f = 0; f < 15; f++) {
 
 			for (c = 0; c < 15; c++) {
-				s[f][c] = (char) (Math.random() * 26 + 'a');
+				s[f][c] = (char) (Math.random() * 26 + 'A');
 
 			}
 
