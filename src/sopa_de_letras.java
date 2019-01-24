@@ -21,9 +21,9 @@ public class sopa_de_letras {
 	 * DESCRIPCIÓN: La función de este método es recoger y validar las palabras
 	 * y colocarlas en la sopa de manera aleatoria.
 	 */
-	public static void posicion() {
+	public static void posicion(String[] args) {
 
-		int f, c, i, k, l, n = 0, u;
+		int f, c, i, k, l, n = 0, u, argumentos = args.length;;
 		String palabra = null;
 
 		System.out.println("Introduce las palabras que quieres que esten en la sopa de letra: ");
@@ -36,9 +36,19 @@ public class sopa_de_letras {
 				do {
 					flag = true;
 					System.out.print((n + 1) + ": ");
-					palabra = t.next();
+					try {
+						if(argumentos>0) {
+							palabra = (args[n]);
+							argumentos--;
+						}
+						else {
+							palabra = t.next();
+						}
+					}
+					catch(Exception e) {
+						
+					}
 					palabra = palabra.toUpperCase();
-					
 					for (u = 0; u<=n; u++) {
 						if(palabra.equalsIgnoreCase(rep[u])) {
 							flag = false;
@@ -564,7 +574,7 @@ public class sopa_de_letras {
 	 * con letras aleatorias y después imprimir la sopa con las nuevas palabras.
 	 */
 
-	public static void sopa() {
+	public static void sopa(String[] args) {
 		int f, c;
 
 		for (f = 0; f < 15; f++) {
@@ -585,7 +595,7 @@ public class sopa_de_letras {
 
 		}
 
-		posicion();
+		posicion(args);
 
 		for (f = 0; f < 15; f++) {
 			for (c = 0; c < 15; c++) {
@@ -610,7 +620,7 @@ public class sopa_de_letras {
 		System.out.println("Bienvenido a la sopa de letras");
 		System.out.println("------------------------------");
 
-		sopa();
+		sopa(args);
 
 	}
 
